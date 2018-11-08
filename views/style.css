@@ -1,0 +1,39 @@
+html, body {
+	font-size: 16px;
+	line-height: 1.4;
+	font-family: 'Lato', sans-serif;
+}
+.container {
+	max-width: 850px;
+	margin: 0 auto;
+}
+input {
+	padding: 10px;
+	font-size: 16px;
+	line-height: 1.4;
+	border: 1px solid #999;
+}
+.button {
+	margin: 10px 0 30px;
+	background-color: blue;
+	color: #fff;
+	padding: 10px;
+	display: inline-block;
+	cursor: pointer;
+}
+.flex {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.flex > div {
+	text-align: left;
+	flex: 33%;
+}
+.strong {
+	font-weight: bold;
+}
+.green {
+	font-weight: bold;
+	color: green;
+}

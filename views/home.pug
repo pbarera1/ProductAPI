@@ -1,0 +1,24 @@
+html
+	head
+		title= title
+		link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato')
+		style
+			include style.css
+	body
+		div.container
+			h1= "Product Actions Page"
+			form#create
+				input(type='text', name="name", placeholder='Name')
+				input(type='text', name="price", placeholder='Price')
+				div.button='Create Product'
+			form#update
+				input(type='text', name="_id", placeholder='ID')
+				input(type='text', name="name", placeholder='Name')
+				input(type='text', name="price", placeholder='Price')
+				div.button='Update Product'
+			form#delete
+				input(type='text', name="_id", placeholder='ID')
+				div.button='Delete Product'
+			a(href='/products/list')= "View All Products"
+			script
+				include main.js

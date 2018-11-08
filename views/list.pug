@@ -1,0 +1,19 @@
+html
+	head
+		title= title
+		link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato')
+		style
+			include style.css
+	body
+		div.container
+			h1= "Current List of Products"
+			div.flex.strong
+				div= 'ID'
+				div= 'Name'
+				div= 'Price'
+			each val, index in users
+				div.flex
+					div= val._id
+					div= val.name
+					div= val.price
+			a(href='/products/home')= "Update Products"
