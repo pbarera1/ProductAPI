@@ -13,6 +13,10 @@ input {
 	line-height: 1.4;
 	border: 1px solid #999;
 }
+button {
+	font-size: 16px;
+	line-height: 1.4;
+}
 .button {
 	margin: 10px 0 30px;
 	background-color: blue;

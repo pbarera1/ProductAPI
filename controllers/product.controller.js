@@ -7,6 +7,10 @@ exports.home = function(req, res) {
 
 exports.list = function(req, res) {
     Product.find({}, function(err, users) {
+        if (err) {
+            res.send({message: err.message});
+            return;
+        }
         res.render('list', {users: users});
     });
 };
@@ -19,7 +23,8 @@ exports.product_create = function(req, res) {
 
     product.save(function(err) {
         if (err) {
-            return err;
+            res.send({message: err.message});
+            return;
         }
         res.send({message: 'Product Created successfully'});
     });
@@ -27,21 +32,30 @@ exports.product_create = function(req, res) {
 
 exports.product_details = function(req, res) {
     Product.findById(req.params.id, function(err, product) {
-        if (err) return err;
+        if (err) {
+            res.send({message: err.message});
+            return;
+        }
         res.send(product);
     });
 };
 
 exports.product_update = function(req, res) {
     Product.findByIdAndUpdate(req.params.id, {$set: req.body}, function(err, product) {
-        if (err) return err;
+        if (err) {
+            res.send({message: err.message});
+            return;
+        }
         res.send({message: 'Product udpated.'});
     });
 };
 
 exports.product_delete = function(req, res) {
     Product.findByIdAndRemove(req.params.id, function(err) {
-        if (err) return err;
+        if (err) {
+            res.send({message: err.message});
+            return;
+        }
         res.send({message: 'Deleted successfully!'});
     });
 };

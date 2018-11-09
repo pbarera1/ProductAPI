@@ -7,72 +7,57 @@ const updateSubmit = document.querySelector('#update .button');
 const deleteSubmit = document.querySelector('#delete .button');
 
 createSubmit.addEventListener('click', async function(e) {
-    const form = createForm;
-    let formData = [...form.elements].map((input, index) => {
-        return encodeURIComponent(input.name) + '=' + encodeURIComponent(input.value);
-    });
-    formData = formData.join('&');
-    console.log(formData);
+    e.preventDefault();
     const response = await fetch('/products/create', {
         method: 'POST',
-        body: formData,
+        body: FormData(createForm),
         headers: {
             'Content-type': 'application/x-www-form-urlencoded'
         }
     });
     const success = await response.json();
-    const displayResponse = document.createElement('div');
-    displayResponse.className = 'green';
-    displayResponse.innerHTML = success.message;
-    form.appendChild(displayResponse);
-    setTimeout(function() {
-        const response = document.querySelector('.green');
-        response.parentNode.removeChild(response);
-    }, 3000);
+    displayReponseStatus(success, createForm);
 });
 
 deleteSubmit.addEventListener('click', async function(e) {
+    e.preventDefault();
     const id = document.querySelector('#delete input').value;
-    console.log(id);
     const response = await fetch(`/products/${id}/delete`, {
         method: 'DELETE'
     });
     const success = await response.json();
-    console.log(success);
-    const displayResponse = document.createElement('div');
-    displayResponse.className = 'green';
-    displayResponse.innerHTML = success.message;
-    deleteForm.appendChild(displayResponse);
-    setTimeout(function() {
-        const response = document.querySelector('.green');
-        response.parentNode.removeChild(response);
-    }, 3000);
+    displayReponseStatus(success, deleteForm);
 });
 
 updateSubmit.addEventListener('click', async function(e) {
+    e.preventDefault();
     const id = document.querySelector('#update input').value;
-    console.log(id);
-    const form = updateForm;
-    let formData = [...form.elements].map((input, index) => {
-        return encodeURIComponent(input.name) + '=' + encodeURIComponent(input.value);
-    });
-    formData = formData.join('&');
-    console.log(formData);
     const response = await fetch(`/products/${id}/update`, {
         method: 'PUT',
-        body: formData,
+        body: FormData(updateForm),
         headers: {
             'Content-type': 'application/x-www-form-urlencoded'
         }
     });
     const success = await response.json();
-    console.log(success);
+    displayReponseStatus(success, updateForm);
+});
+
+const displayReponseStatus = (success, elemToAppendAfter) => {
     const displayResponse = document.createElement('div');
     displayResponse.className = 'green';
     displayResponse.innerHTML = success.message;
-    updateForm.appendChild(displayResponse);
+    elemToAppendAfter.appendChild(displayResponse);
     setTimeout(function() {
         const response = document.querySelector('.green');
         response.parentNode.removeChild(response);
     }, 3000);
-});
+};
+
+const FormData = form => {
+    let formData = [...form.elements].map((input, index) => {
+        return encodeURIComponent(input.name) + '=' + encodeURIComponent(input.value);
+    });
+    formData = formData.join('&');
+    return formData;
+};

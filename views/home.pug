@@ -8,17 +8,17 @@ html
 		div.container
 			h1= "Product Actions Page"
 			form#create
-				input(type='text', name="name", placeholder='Name')
-				input(type='text', name="price", placeholder='Price')
-				div.button='Create Product'
+				input(type='text', name="name", placeholder='Name', required="true")
+				input(type='text', name="price", placeholder='Price' required="true")
+				button.button='Create Product'
 			form#update
-				input(type='text', name="_id", placeholder='ID')
-				input(type='text', name="name", placeholder='Name')
-				input(type='text', name="price", placeholder='Price')
-				div.button='Update Product'
+				input(type='text', name="_id", placeholder='ID' required="true")
+				input(type='text', name="name", placeholder='Name' required="true")
+				input(type='text', name="price", placeholder='Price' required="true")
+				button.button='Update Product'
 			form#delete
-				input(type='text', name="_id", placeholder='ID')
-				div.button='Delete Product'
+				input(type='text', name="_id", placeholder='ID' required="true")
+				button.button='Delete Product'
 			a(href='/products/list')= "View All Products"
 			script
 				include main.js
