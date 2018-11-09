@@ -8,6 +8,11 @@ const deleteSubmit = document.querySelector('#delete .button');
 
 createSubmit.addEventListener('click', async function(e) {
     e.preventDefault();
+    if (!createForm.checkValidity()) {
+        createForm.reportValidity();
+        return;
+    }
+
     const response = await fetch('/products/create', {
         method: 'POST',
         body: FormData(createForm),
@@ -21,6 +26,11 @@ createSubmit.addEventListener('click', async function(e) {
 
 deleteSubmit.addEventListener('click', async function(e) {
     e.preventDefault();
+    if (!createForm.checkValidity()) {
+        createForm.reportValidity();
+        return;
+    }
+
     const id = document.querySelector('#delete input').value;
     const response = await fetch(`/products/${id}/delete`, {
         method: 'DELETE'
@@ -31,6 +41,11 @@ deleteSubmit.addEventListener('click', async function(e) {
 
 updateSubmit.addEventListener('click', async function(e) {
     e.preventDefault();
+    if (!createForm.checkValidity()) {
+        createForm.reportValidity();
+        return;
+    }
+
     const id = document.querySelector('#update input').value;
     const response = await fetch(`/products/${id}/update`, {
         method: 'PUT',
